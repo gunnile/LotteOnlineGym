@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "696924981504",
+    "firebase_url": "https://lotteonlinegym.firebaseio.com",
+    "project_id": "lotteonlinegym",
+    "storage_bucket": "lotteonlinegym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696924981504:android:db7b6fdde77f1439",
+        "android_client_info": {
+          "package_name": "com.lotte15.lotteonlinegym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "696924981504-qb3mh1hur4cl4t6hb3h9g16u1ra68ipj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqY5KzgWWR9hTj3pzEf6HPK3U09ArG3qU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
