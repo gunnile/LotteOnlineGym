@@ -35,8 +35,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Locale;
 
@@ -76,10 +80,24 @@ public class MainActivity extends AppCompatActivity implements PlanetAdapter.OnI
     private CharSequence mTitle;
     private String[] mPlanetTitles;
 
+    private ImageView mCharacter;
+    private TextView mAISuggestion;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+
+        mCharacter = (ImageView) findViewById(R.id.image_character);
+        mAISuggestion = (TextView) findViewById(R.id.textview_ai);
+
+        Glide.with(this)
+                .load(R.drawable.img_symbol_logo)
+                .apply(new RequestOptions().circleCrop())
+                .into(mCharacter);
+
+        mAISuggestion.setText(R.string.ai_suggestion);
 
         mTitle = mDrawerTitle = getTitle();
         mPlanetTitles = getResources().getStringArray(R.array.planets_array);
@@ -173,12 +191,12 @@ public class MainActivity extends AppCompatActivity implements PlanetAdapter.OnI
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = PlanetFragment.newInstance(position);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
-        ft.commit();
+//        Fragment fragment = PlanetFragment.newInstance(position);
+//
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction ft = fragmentManager.beginTransaction();
+//        ft.replace(R.id.content_frame, fragment);
+//        ft.commit();
 
         // update selected item title, then close the drawer
         setTitle(mPlanetTitles[position]);

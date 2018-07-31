@@ -64,10 +64,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private ImageView mLogo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -102,10 +104,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-//        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(intent);
     }
 
     private void populateAutoComplete() {

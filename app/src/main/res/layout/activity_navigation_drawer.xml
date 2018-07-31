@@ -26,19 +26,32 @@
     android:layout_height="match_parent"
     tools:openDrawer="start" >
 
-    <!-- As the main content view, the view below consumes the entire
-         space available using match_parent in both dimensions. -->
-    <FrameLayout
-        android:id="@+id/content_frame"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <!-- android:layout_gravity="start" tells DrawerLayout to treat
-         this as a sliding drawer on the left side for left-to-right
-         languages and on the right side for right-to-left languages.
-         The drawer is given a fixed width in dp and extends the full height of
-         the container. A solid background is used for contrast
-         with the content view. -->
+        <ImageView
+            android:id="@+id/image_ai"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/img_symbol_logo"/>
+
+        <TextView
+            android:id="@+id/textview_ai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_character"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:gravity="center"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/left_drawer"
         android:scrollbars="vertical"
