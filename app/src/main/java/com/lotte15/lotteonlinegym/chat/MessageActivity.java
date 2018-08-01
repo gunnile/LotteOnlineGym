@@ -14,10 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,11 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.lotte15.lotteonlinegym.R;
 import com.lotte15.lotteonlinegym.model.ChatModel;
 import com.lotte15.lotteonlinegym.model.UserModel;
+import com.lotte15.lotteonlinegym.util.GlobalApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -39,11 +37,11 @@ import butterknife.ButterKnife;
 public class MessageActivity extends AppCompatActivity {
 
     private String destinationUid;
-    @Bind(R.id.btn_message_send)
+    @BindView(R.id.btn_message_send)
     Button btn_send;
-    @Bind(R.id.et_message_chat)
+    @BindView(R.id.et_message_chat)
     EditText et_chat;
-    @Bind(R.id.recycler_message)
+    @BindView(R.id.recycler_message)
     RecyclerView recyclerView;
 
     private String uid;
@@ -52,6 +50,7 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_message);
         ButterKnife.bind(this);
 
         init();
@@ -60,7 +59,7 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void init() {
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uid = GlobalApplication.getGlobalApplicationContext().getCurrentUser().getUid();
         destinationUid = getIntent().getStringExtra("destinationUid");
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,11 +172,11 @@ public class MessageActivity extends AppCompatActivity {
                 messageViewHolder.ll_destination.setVisibility(View.INVISIBLE);
                 messageViewHolder.tv_message.setTextSize(25);
             }else{ // 상대방이 보낼 때
-                Glide.with(holder.itemView.getContext())
-                        .load(userModel.profileImageUrl)
-                        .apply(new RequestOptions().circleCrop())
-                        .into(messageViewHolder.iv_profile);
-                messageViewHolder.tv_name.setText(userModel.userName);
+//                Glide.with(holder.itemView.getContext())
+//                        .load(userModel.profileImageUrl)
+//                        .apply(new RequestOptions().circleCrop())
+//                        .into(messageViewHolder.iv_profile);
+//                messageViewHolder.tv_name.setText(userModel.user);
                 messageViewHolder.ll_destination.setVisibility(View.VISIBLE);
                 messageViewHolder.tv_message.setBackgroundResource(R.drawable.leftbubble);
                 messageViewHolder.tv_message.setText(comments.get(position).message);

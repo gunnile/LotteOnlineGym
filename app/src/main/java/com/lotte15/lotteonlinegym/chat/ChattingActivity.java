@@ -9,14 +9,13 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.lotte15.lotteonlinegym.R;
 import com.lotte15.lotteonlinegym.model.ChatModel;
 import com.lotte15.lotteonlinegym.model.UserModel;
+import com.lotte15.lotteonlinegym.util.GlobalApplication;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +31,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Hyeongpil on 2018. 7. 30..
@@ -39,21 +40,25 @@ import butterknife.Bind;
 
 public class ChattingActivity extends AppCompatActivity {
     final static String TAG = ChattingActivity.class.getSimpleName();
-
-    @Bind(R.id.recycler_chatting)
     RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chatting);
+        ButterKnife.bind(this);
 
         init();
 
     }
 
     private void init() {
-        recyclerView.setAdapter(new ChatRecyclerViewAdapter());
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_chatting);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new ChatRecyclerViewAdapter());
+
+        Log.e(TAG,"firebase : "+FirebaseDatabase.getInstance().getReference());
     }
 
     class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -63,7 +68,8 @@ public class ChattingActivity extends AppCompatActivity {
 
 
         public ChatRecyclerViewAdapter(){
-            uid = ""; //// TODO: 2018. 7. 30. 서버에서 uid 값 가져오기
+            Log.e(TAG,"adapter 진입 :"+FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+uid));
+            uid = GlobalApplication.getGlobalApplicationContext().getCurrentUser().getName();
             FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,6 +98,7 @@ public class ChattingActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             final CustomViewHolder customViewHolder = (CustomViewHolder)holder;
             String destinationUid = null;
+            Log.e(TAG,"onBindViewHolder 진입 : ");
 
             //채팅방에 있는 유저들 체크
             for(String user : chatModels.get(position).users.keySet()){
@@ -100,17 +107,20 @@ public class ChattingActivity extends AppCompatActivity {
                     destinationUsers.add(destinationUid);
                 }
             }
+
+            Log.e(TAG,"firebase : "+FirebaseDatabase.getInstance().getReference());
             FirebaseDatabase.getInstance().getReference().child("users").child(destinationUid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.e(TAG,"ondatachange 진입 : "+dataSnapshot.getValue());
                     //프로필 이미지
                     UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                    Glide.with(customViewHolder.itemView.getContext())
-                            .load(userModel.profileImageUrl)
-                            .apply(new RequestOptions().circleCrop())
-                            .into(customViewHolder.iv_chatting);
+//                    Glide.with(customViewHolder.itemView.getContext())
+//                            .load(userModel.profileImageUrl)
+//                            .apply(new RequestOptions().circleCrop())
+//                            .into(customViewHolder.iv_chatting);
                     //타이틀
-                    customViewHolder.tv_title.setText(userModel.userName);
+                    customViewHolder.tv_title.setText(userModel.getName());
                 }
 
                 @Override
