@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,12 +44,12 @@ public class ChattingActivity extends AppCompatActivity {
     final static String TAG = ChattingActivity.class.getSimpleName();
     RecyclerView recyclerView;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatting);
         ButterKnife.bind(this);
+        setTitle("채팅방");
 
         init();
 
@@ -70,19 +72,22 @@ public class ChattingActivity extends AppCompatActivity {
         public ChatRecyclerViewAdapter(){
             Log.e(TAG,"adapter 진입 :"+FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+uid));
             uid = GlobalApplication.getGlobalApplicationContext().getCurrentUser().getName();
+            Log.e(TAG,"uid : "+uid);
             FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.e(TAG,"onDataChange 진입 : "+dataSnapshot);
                     chatModels.clear();
-                    for (DataSnapshot item : dataSnapshot.getChildren()){
+                    for (DataSnapshot item :dataSnapshot.getChildren()){
                         chatModels.add(item.getValue(ChatModel.class));
+                        Log.e(TAG,"chatModels.add ");
                     }
                     notifyDataSetChanged();
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    Log.e(TAG,"onCancelled 진입 : "+databaseError);
                 }
             });
         }
@@ -98,29 +103,29 @@ public class ChattingActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             final CustomViewHolder customViewHolder = (CustomViewHolder)holder;
             String destinationUid = null;
-            Log.e(TAG,"onBindViewHolder 진입 : ");
 
+
+            Log.e(TAG,"chatModels :"+chatModels );
             //채팅방에 있는 유저들 체크
             for(String user : chatModels.get(position).users.keySet()){
+                Log.e(TAG,"유저체크 진입 : des user :"+user );
                 if(!user.equals(uid)){
-                    destinationUid = user;
+//                    destinationUid = user;
+                    destinationUid = "1"; // todo 하드코딩지우기
                     destinationUsers.add(destinationUid);
+
                 }
             }
-
-            Log.e(TAG,"firebase : "+FirebaseDatabase.getInstance().getReference());
+            destinationUid = "1"; // todo 하드코딩지우기
             FirebaseDatabase.getInstance().getReference().child("users").child(destinationUid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.e(TAG,"ondatachange 진입 : "+dataSnapshot.getValue());
-                    //프로필 이미지
-                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
-//                    Glide.with(customViewHolder.itemView.getContext())
-//                            .load(userModel.profileImageUrl)
-//                            .apply(new RequestOptions().circleCrop())
-//                            .into(customViewHolder.iv_chatting);
-                    //타이틀
-                    customViewHolder.tv_title.setText(userModel.getName());
+//                    Log.e(TAG,"ondatachange 진입 : "+dataSnapshot.getValue());
+//                    //프로필 이미지
+//                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
+//
+//                    //타이틀
+//                    customViewHolder.tv_title.setText(userModel.getName());
                 }
 
                 @Override
@@ -131,20 +136,35 @@ public class ChattingActivity extends AppCompatActivity {
             //마지막 메시지 가져오기 메시지를 내림차순으로 정렬 후 키값 가져옴
             Map<String, ChatModel.Comment> commentMap = new TreeMap<>(Collections.<String>reverseOrder());
             commentMap.putAll(chatModels.get(position).comments);
-            String lastMessageKey = (String) commentMap.keySet().toArray()[0];
-            customViewHolder.tv_lastMessage.setText(chatModels.get(position).comments.get(lastMessageKey).message);
+//            String lastMessageKey = (String) commentMap.keySet().toArray()[0];
+//            customViewHolder.tv_lastMessage.setText(chatModels.get(position).comments.get(lastMessageKey).message);
+            customViewHolder.tv_lastMessage.setText("디파짓 5000원 방");
 
             customViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                    intent.putExtra("destinationUid", destinationUsers.get(position));
+                    intent.putExtra("destinationUid", "2");
 
                     ActivityOptions activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(),R.anim.fromright, R.anim.toleft);
                     startActivity(intent,activityOptions.toBundle());
                 }
             });
+
+            if(position == 0){
+                customViewHolder.tv_title.setText("턱걸이 하루 20개");
+                Glide.with(customViewHolder.itemView.getContext())
+                            .load(R.drawable.people)
+                            .apply(new RequestOptions().circleCrop())
+                            .into(customViewHolder.iv_chatting);
+            } else if (position == 1){
+                customViewHolder.tv_title.setText("물 1.5L 마시는 방");
+                Glide.with(customViewHolder.itemView.getContext())
+                        .load(R.drawable.people22)
+                        .apply(new RequestOptions().circleCrop())
+                        .into(customViewHolder.iv_chatting);
+            }
         }
 
         @Override

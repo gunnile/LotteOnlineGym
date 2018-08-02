@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.lotte15.lotteonlinegym.chat.ChatbotActivity;
 import com.lotte15.lotteonlinegym.chat.ChattingActivity;
 
 import java.util.Locale;
@@ -150,8 +151,18 @@ public class MainActivity extends AppCompatActivity implements PlanetAdapter.OnI
     private void selectItem(int position) {
         Log.e(TAG,"position :"+position);
 
-        Intent intent = new Intent(this, ChattingActivity.class);
-        startActivity(intent);
+        switch (position){
+            case 2:
+                Intent intent2 = new Intent(this, ChatbotActivity.class);
+                startActivity(intent2);
+                break;
+            case 3:
+                Intent intent = new Intent(this, ChattingActivity.class);
+                startActivity(intent);
+                break;
+
+        }
+
         // update the main content by replacing fragments
 //
 //        Fragment fragment = PlanetFragment.newInstance(position);

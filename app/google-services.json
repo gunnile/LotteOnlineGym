@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "696924981504-gkai4dvapjva1msqh9vnuit1d3g1im8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lotte15.lotteonlinegym",
+            "certificate_hash": "983c80ed0e2e22bd5af2cb8703c69f896a029ac1"
+          }
+        },
+        {
           "client_id": "696924981504-qb3mh1hur4cl4t6hb3h9g16u1ra68ipj.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696924981504-qb3mh1hur4cl4t6hb3h9g16u1ra68ipj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
