@@ -27,6 +27,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.lotte15.lotteonlinegym.R;
 import com.lotte15.lotteonlinegym.adapter.MenuAdapter;
+
+import com.lotte15.lotteonlinegym.chat.ChatbotActivity;
+import com.lotte15.lotteonlinegym.chat.ChattingActivity;
 
 import java.util.Locale;
 
@@ -70,6 +74,7 @@ import java.util.Locale;
  * for example enabling or disabling a data overlay on top of the current content.</p>
  */
 public class MainActivity extends AppCompatActivity implements MenuAdapter.OnItemClickListener {
+
     private DrawerLayout mDrawerLayout;
     private RecyclerView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -136,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.OnIte
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            selectItem(0);
+//            selectItem(0);
         }
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -196,6 +201,18 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.OnIte
 
     private void selectItem(int position) {
 
+        // update the main content by replacing fragments
+//
+//        Fragment fragment = PlanetFragment.newInstance(position);
+//
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction ft = fragmentManager.beginTransaction();
+//        ft.replace(R.id.content_frame, fragment);
+//        ft.commit();
+//
+//        // update selected item title, then close the drawer
+//        setTitle(mPlanetTitles[position]);
+
         if(position == 0){
 
         }else if(position == 1){
@@ -207,8 +224,12 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.OnIte
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }else if(position == 3){
+            Intent intent2 = new Intent(this, ChatbotActivity.class);
+            startActivity(intent2);
 
         }else if(position == 4){
+            Intent intent = new Intent(this, ChattingActivity.class);
+            startActivity(intent);
 
         }
 
