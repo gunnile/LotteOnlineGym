@@ -1,4 +1,4 @@
-package com.lotte15.lotteonlinegym;
+package com.lotte15.lotteonlinegym.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -28,6 +28,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.lotte15.lotteonlinegym.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginActivity.this, InputActivity.class);
                 startActivity(intent);
                 finish();
             }

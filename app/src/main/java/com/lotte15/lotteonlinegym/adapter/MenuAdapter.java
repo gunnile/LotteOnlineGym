@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.lotte15.lotteonlinegym;
+package com.lotte15.lotteonlinegym.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,10 +22,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lotte15.lotteonlinegym.R;
+
 /**
  * Adapter for the planet data used in our drawer menu,
  */
-public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.ViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     private String[] mDataset;
     private OnItemClickListener mListener;
 
@@ -48,7 +50,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.ViewHolder
         }
     }
 
-    public PlanetAdapter(String[] myDataset, OnItemClickListener listener) {
+    public MenuAdapter(String[] myDataset, OnItemClickListener listener) {
         mDataset = myDataset;
         mListener = listener;
     }
