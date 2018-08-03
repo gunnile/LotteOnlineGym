@@ -62,10 +62,10 @@
     <string name="title_section3">저녁</string>
 
     <string-array name="food_image_array">
-        <item>R.drawable.img_symbol_logo</item>
-        <item>R.drawable.img_symbol_logo</item>
-        <item>R.drawable.img_symbol_logo</item>
-        <item>R.drawable.img_symbol_logo</item>
+        <item>R.drawable.jaeyook</item>
+        <item>R.drawable.dyenjang</item>
+        <item>R.drawable.ddokgalbi</item>
+        <item>R.drawable.momil</item>
     </string-array>
 
     <string-array name="food_title_array">
@@ -76,10 +76,10 @@
     </string-array>
 
     <string-array name="food_description_array">
-        <item>제육볶음</item>
-        <item>된장찌개</item>
-        <item>떡갈비</item>
-        <item>냉모밀</item>
+        <item>가격이 저렴하면서도 고기 맛을 즐기고 포만감을 느낄 수 있어 직장 남성들에게 인기 있는 메뉴다. 제육볶음은 돼지고기 목살을 도톰하게 저며 생강즙을 충분히 넣은 고추장 양념에 재웠다가 달달 볶아낸 대표적인 고추장 양념 요리다.</item>
+        <item>된장찌개는 주식인 밥에 부족한 여러 영양소를 동시에 섭취할 수 있게 해준다. 매일 먹어도 결코 질리지 않는 음식으로 우리나라 사람들은 된장찌개를 첫손가락에 꼽는다. </item>
+        <item>떡갈비는 궁중에서 임금님이 즐기던 고급음식이다. 쇠고기를 다져 만든 모양이 떡을 닮아 붙은 이름이다. 요즘은 갈비 고유의 맛과 간편한 조리 방법으로 아이들의 간식과 도시락 반찬으로 많이 쓰인다.</item>
+        <item>메밀은 성질이 서늘하여 찬 음식에 속한다. 메밀과 같이 서늘한 성질을 가진 음식은 체내에서 열을 내려주고 염증을 가라앉히며 배변을 용이하게 해주는 역할을 한다.</item>
     </string-array>
 
 </resources>

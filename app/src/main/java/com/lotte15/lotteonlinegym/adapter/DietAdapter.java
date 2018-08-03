@@ -1,6 +1,7 @@
 package com.lotte15.lotteonlinegym.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +49,32 @@ public class DietAdapter  extends ArrayAdapter<DietItem> {
 
         DietItem diet = getItem(position);
 
+        holder.foodTitle.setTypeface(holder.foodTitle.getTypeface(), Typeface.BOLD);
         holder.foodTitle.setText(diet.foodTitle);
         holder.foodDescription.setText(diet.foodDescription);
 
-        Glide.with(context)
-                .load(R.drawable.img_symbol_logo)
-                .apply(new RequestOptions().circleCrop())
-                .into(holder.foodImage);
+        if(position == 0){
+            Glide.with(context)
+                    .load(R.drawable.jaeyook)
+                    .apply(new RequestOptions().centerCrop())
+                    .into(holder.foodImage);
+        }else if(position == 1){
+            Glide.with(context)
+                    .load(R.drawable.dyenjang)
+                    .apply(new RequestOptions().centerCrop())
+                    .into(holder.foodImage);
+        }else if(position == 2){
+            Glide.with(context)
+                    .load(R.drawable.ddokgalbi)
+                    .apply(new RequestOptions().centerCrop())
+                    .into(holder.foodImage);
+        }else if(position == 3){
+            Glide.with(context)
+                    .load(R.drawable.momil)
+                    .apply(new RequestOptions().centerCrop())
+                    .into(holder.foodImage);
+        }
+
 
         return convertView;
     }

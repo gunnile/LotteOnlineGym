@@ -23,13 +23,13 @@ public class DietActivity extends FragmentActivity {
 
     private ViewPager mViewPager;
 
-    private DietItem dietFoods = new DietItem();
+    private DietItem dietFoods;
 
     private String[] foodImages;
     private String[] foodTitles;
     private String[] foodDescriptions;
 
-    private ArrayList<DietItem> items = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class DietActivity extends FragmentActivity {
     }
 
     class SamplePagerAdapter extends PagerAdapter {
+
+        public ArrayList<DietItem> items = new ArrayList<>();
 
         @Override
         public int getCount() {
@@ -76,6 +78,7 @@ public class DietActivity extends FragmentActivity {
                     container, false);
 
 
+
             ListView listview = (ListView) view.findViewById(R.id.diet_listview);
 
             //data added
@@ -83,13 +86,21 @@ public class DietActivity extends FragmentActivity {
             foodDescriptions = getResources().getStringArray(R.array.food_description_array);
             foodTitles = getResources().getStringArray(R.array.food_title_array);
 
-            for(int i=0; i < foodTitles.length; i++){
-                dietFoods.foodImage = foodImages[i];
-                dietFoods.foodDescription = foodDescriptions[i];
-                dietFoods.foodTitle = foodTitles[i];
+            if(items.isEmpty() == true){
+                for(int i=0; i < 4; i++){
 
-                items.add(dietFoods);
+                    dietFoods = new DietItem();
+
+                    dietFoods.foodImage = foodImages[i];
+                    dietFoods.foodDescription = foodDescriptions[i];
+                    dietFoods.foodTitle = foodTitles[i];
+
+                    items.add(dietFoods);
+
+                    dietFoods = null;
+                }
             }
+
 
             dietAdapter = new DietAdapter(getBaseContext(), R.layout.diet_adapter, items);
 
