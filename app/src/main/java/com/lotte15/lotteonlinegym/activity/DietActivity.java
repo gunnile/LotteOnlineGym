@@ -29,8 +29,6 @@ public class DietActivity extends FragmentActivity {
     private String[] foodTitles;
     private String[] foodDescriptions;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
