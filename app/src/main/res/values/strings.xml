@@ -23,7 +23,7 @@
     <string name="user_gender">성별</string>
     <string name="user_weight">몸무게</string>
 
-    <string name="ai_suggestion">어깨가 좁으시네요. 어깨를 넓히기 위해선 풀업 운동이 최고랍니다. 오늘 풀업 100개에 도전해보세요!</string>
+    <string name="ai_suggestion">어깨가 좁으시네요. 오늘 풀업 100개에 도전해보세요!</string>
 
     <string name="submit">확인</string>
 

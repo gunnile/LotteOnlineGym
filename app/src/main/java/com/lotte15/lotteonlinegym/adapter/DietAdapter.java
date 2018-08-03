@@ -76,6 +76,7 @@ public class DietAdapter  extends ArrayAdapter<DietItem> {
         }
 
 
+
         return convertView;
     }
 
