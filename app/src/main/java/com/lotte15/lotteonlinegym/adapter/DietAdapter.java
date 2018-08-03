@@ -56,6 +56,7 @@ public class DietAdapter  extends ArrayAdapter<DietItem> {
                 .apply(new RequestOptions().circleCrop())
                 .into(holder.foodImage);
 
+
         return convertView;
     }
 

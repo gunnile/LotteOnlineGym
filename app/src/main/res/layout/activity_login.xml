@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/lotte_logo"
-        android:layout_width="150dp"
+        android:layout_width="230dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:background="@drawable/img_symbol_logo"/>
+        android:background="@drawable/hai"/>
 
     <ScrollView
         android:id="@+id/login_form"
