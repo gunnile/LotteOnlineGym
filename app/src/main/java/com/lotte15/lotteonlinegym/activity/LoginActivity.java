@@ -1,4 +1,4 @@
-package com.lotte15.lotteonlinegym;
+package com.lotte15.lotteonlinegym.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -36,6 +36,8 @@ import android.widget.Toast;
 import com.lotte15.lotteonlinegym.retrofit.LoginThread;
 import com.lotte15.lotteonlinegym.util.GlobalApplication;
 
+import com.lotte15.lotteonlinegym.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,10 +74,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private ImageView mLogo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.actv_login_email);
         populateAutoComplete();
@@ -108,12 +112,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginActivity.this, InputActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-//        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(intent);
     }
 
     private void populateAutoComplete() {

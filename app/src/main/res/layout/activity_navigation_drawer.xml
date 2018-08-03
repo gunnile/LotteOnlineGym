@@ -24,29 +24,51 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2D2D2D"
     tools:openDrawer="start" >
 
-    <!-- As the main content view, the view below consumes the entire
-         space available using match_parent in both dimensions. -->
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <!-- android:layout_gravity="start" tells DrawerLayout to treat
-         this as a sliding drawer on the left side for left-to-right
-         languages and on the right side for right-to-left languages.
-         The drawer is given a fixed width in dp and extends the full height of
-         the container. A solid background is used for contrast
-         with the content view. -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp">
+
+        <ImageView
+            android:id="@+id/image_ai"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/img_symbol_logo"/>
+
+        <TextView
+            android:id="@+id/textview_ai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_marginLeft="12dp"
+            android:padding="6dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_character"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/left_drawer"
         android:scrollbars="vertical"
-        android:layout_width="240dp"
+        android:layout_width="160dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
         android:choiceMode="singleChoice"
         android:divider="@null"
         app:layoutManager="LinearLayoutManager"
         />
+
+
 </android.support.v4.widget.DrawerLayout>

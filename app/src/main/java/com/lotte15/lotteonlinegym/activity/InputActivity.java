@@ -1,11 +1,14 @@
-package com.lotte15.lotteonlinegym;
+package com.lotte15.lotteonlinegym.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.lotte15.lotteonlinegym.R;
 
 public class InputActivity extends AppCompatActivity {
 
@@ -30,7 +33,6 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
-
 
         initUi();
     }
@@ -57,6 +59,9 @@ public class InputActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 서버에 사용자 정보 post
+                Intent intent=new Intent(InputActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">LotteOnlineGym</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="title_activity_main">Sign in</string>
+    <string name="title_activity_main"></string>
+    <string name="title_activity_input">Input</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -22,9 +23,12 @@
     <string name="user_gender">성별</string>
     <string name="user_weight">몸무게</string>
 
+    <string name="ai_suggestion">어깨가 좁으시네요. 어깨를 넓히기 위해선 풀업 운동이 최고랍니다. 오늘 풀업 100개에 도전해보세요!</string>
+
     <string name="submit">확인</string>
 
-    <string-array name="planets_array">
+    <string-array name="menus_array">
+        <item>홈</item>
         <item>식단</item>
         <item>운동</item>
         <item>상담</item>
@@ -52,5 +56,30 @@
 
         ]]>
     </string>
+
+    <string name="title_section1">아침</string>
+    <string name="title_section2">점심</string>
+    <string name="title_section3">저녁</string>
+
+    <string-array name="food_image_array">
+        <item>R.drawable.img_symbol_logo</item>
+        <item>R.drawable.img_symbol_logo</item>
+        <item>R.drawable.img_symbol_logo</item>
+        <item>R.drawable.img_symbol_logo</item>
+    </string-array>
+
+    <string-array name="food_title_array">
+        <item>제육볶음</item>
+        <item>된장찌개</item>
+        <item>떡갈비</item>
+        <item>냉모밀</item>
+    </string-array>
+
+    <string-array name="food_description_array">
+        <item>제육볶음</item>
+        <item>된장찌개</item>
+        <item>떡갈비</item>
+        <item>냉모밀</item>
+    </string-array>
 
 </resources>
