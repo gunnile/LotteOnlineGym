@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapter.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
+        setTitle("HAI");
 
         mCharacter = (ImageView) findViewById(R.id.image_character);
         mAISuggestion = (TextView) findViewById(R.id.textview_ai);
